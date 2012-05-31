@@ -46,4 +46,12 @@ Clone a repo by name :-
     Cloning into 'urlybird'...
     ...
 
+Open the GitHub project page :-
+
+    $ mygit open urlybird
+
+or from within the repo
+
+    $ mygit open
+
 

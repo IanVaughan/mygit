@@ -58,6 +58,11 @@ when 'clone'      # clone a repo by name
   p = access.find ARGV.shift
   cmd = "git clone #{p['ssh_url']}"
   system cmd
+when 'open'       # Opens either the current pwd, or a supplied project, GitHub project page in a browser
+  opt = ARGV.shift
+  opt = File.basename(Dir.getwd) if opt.nil?
+  p = access.find opt
+  system "open #{p['html_url']}"
 else
   puts 'Unknown or no command given! Options are :-'
   File.open(__FILE__).each_line do |line|

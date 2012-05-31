@@ -17,6 +17,9 @@ Setup a symlink to a directory in your path (I have ~/bin in mine)
 
     ln -s <full-path>/mygit/mygit ~/bin/mygit
 
+(Of course you can alias it to anything you like!)
+
+
 Usage
 -----
 
@@ -53,5 +56,4 @@ Open the GitHub project page :-
 or from within the repo
 
     $ mygit open
-
 

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "mygit"
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Ian Vaughan"]
   s.email       = ["mygit@ianvaughan.co.uk"]
@@ -8,7 +8,6 @@ Gem::Specification.new do |s|
   s.summary     = "Some CLI commands to talk to GitHub"
   s.description = "Allows you to do cool things from the CLI with GitHub"
 
-  s.required_ruby_version = '>=1.9'
   s.license           = 'MIT'
 
   s.add_dependency    'httparty'

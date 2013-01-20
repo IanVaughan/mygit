@@ -2,6 +2,7 @@
 
 access = Access.new
 
+# TODO: Use OptionsParser
 cmd = ARGV.shift
 case cmd
 when 'list'       # dumps a list of all repos found

@@ -10,7 +10,7 @@ class GitHub
   end
 
   def repos repo
-    self.class.get("/orgs/#{repo}/repos", {:basic_auth => @auth})
+    self.class.get("/orgs/#{repo}/repos?per_page=100", {:basic_auth => @auth})
   end
 end
 

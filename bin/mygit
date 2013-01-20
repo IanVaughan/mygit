@@ -4,6 +4,14 @@ require_relative './../lib/mygit'
 
 access = Access.new
 
+def current_branch
+  `git rev-parse --abbrev-ref HEAD`
+end
+
+def branch_url
+  "tree/#{current_branch}"
+end
+
 # TODO: Use OptionsParser
 cmd = ARGV.shift
 case cmd
@@ -19,7 +27,7 @@ when 'open'       # Opens either the current pwd, or a supplied project, GitHub 
   opt = ARGV.shift
   opt = File.basename(Dir.getwd) if opt.nil?
   p = access.find opt
-  system "open #{p['html_url']}"
+  system "open #{p['html_url']}/#{branch_url}"
 else
   puts 'Unknown or no command given! Options are :-'
   File.open(__FILE__).each_line do |line|

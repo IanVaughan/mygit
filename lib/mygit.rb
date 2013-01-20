@@ -1,5 +1,3 @@
-# curl -u "github@ianvaughan.co.uk:password" https://api.github.com/orgs/globaldev/repos
-
 require 'httparty'
 require 'pp'
 
@@ -19,12 +17,10 @@ end
 
 class Access
   def initialize
-    conf = YAML.load_file File.expand_path '~/.mygit'
+    filename = '~/.mygit'
+    file = File.expand_path filename
+    conf = YAML.load_file file
     @repo = GitHub.new(conf['user'], conf['pass']).repos(conf['repo'])
-  end
-
-  def keys
-    puts @repo.first.each_key { |k| puts k }
   end
 
   def list
@@ -42,5 +38,3 @@ class Access
     found
   end
 end
-
-# git clone name -> looks up git@ ssh, then cd

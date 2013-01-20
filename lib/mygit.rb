@@ -15,8 +15,7 @@ class GitHub
 end
 
 class Access
-  def initialize
-    filename = '~/.mygit'
+  def initialize filename = '~/.mygit'
     file = File.expand_path filename
     conf = YAML.load_file file
     @repo = GitHub.new(conf['user'], conf['pass']).repos(conf['repo'])

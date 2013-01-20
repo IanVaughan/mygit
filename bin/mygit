@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require_relative './../lib/mygit'
+
 access = Access.new
 
 # TODO: Use OptionsParser

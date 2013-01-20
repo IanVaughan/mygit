@@ -9,6 +9,7 @@ Setup
 
 Put config file where I can find it :-
 
+    mkdir ~/.mygit
     cp .mygit-example ~/.mygit
 
 And then edit it to add your details

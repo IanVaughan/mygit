@@ -12,7 +12,6 @@ class GitHub
   def repos repo
     self.class.get("/orgs/#{repo}/repos", {:basic_auth => @auth})
   end
-
 end
 
 class Access

@@ -2,11 +2,13 @@ PATH
   remote: .
   specs:
     mygit (0.0.2)
+      highline
       httparty
 
 GEM
   remote: http://rubygems.org/
   specs:
+    highline (1.6.15)
     httparty (0.10.0)
       multi_json (~> 1.0)
       multi_xml

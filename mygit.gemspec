@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.license           = 'MIT'
 
   s.add_dependency    'httparty'
+  s.add_dependency    'highline'
 
   s.files        = %w{README.md bin/mygit}
   s.executables  = ['mygit']

@@ -1,5 +1,6 @@
 require 'httparty'
 require 'pp'
+require 'highline/import'
 
 class GitHub
   include HTTParty

@@ -37,7 +37,7 @@ class FileStorage
       save keep
     end
 
-    KEEP_KEYS = ['name', 'ssh_url']
+    KEEP_KEYS = ['name', 'ssh_url', 'html_url']
     def remove_keys array
       keep = []
       array.each do |a|
@@ -83,38 +83,40 @@ class Access
 end
 
 class Commands
-  def current_branch
-    `git rev-parse --abbrev-ref HEAD`
-  end
+  class << self
+    def current_branch
+      `git rev-parse --abbrev-ref HEAD`
+    end
 
-  def branch_url
-    "tree/#{current_branch}"
-  end
+    def branch_url
+      "tree/#{current_branch}"
+    end
 
-  # TODO: Use OptionsParser
-  def self.execute args
-    cmd = args.shift
-    case cmd
-    when 'update'
-      FileStorage::update
-    when 'list'       # dumps a list of all repos found
-      Access::list
-    when 'find'       # find a repo by name
-      pp Access::find args.shift
-    when 'clone'      # clone a repo by name
-      p = Access::find args.shift
-      cmd = "git clone #{p['ssh_url']}"
-      system cmd
-    when 'open'       # Opens either the current pwd, or a supplied project, GitHub project page in a browser
-      opt = args.shift
-      opt = File.basename(Dir.getwd) if opt.nil?
-      p = Access.new.find opt
-      system "open #{p['html_url']}/#{branch_url}"
-    else
-      puts 'Unknown or no command given! Options are :-'
-      File.open(__FILE__).each_line do |line|
-        puts "  " + line.sub('when','').sub('#', '->').gsub('\'','') if line.include? 'when'
-        break if line.include? 'else'
+    # TODO: Use OptionsParser
+    def execute args
+      cmd = args.shift
+      case cmd
+      when 'update'
+        FileStorage::update
+      when 'list'       # dumps a list of all repos found
+        Access::list
+      when 'find'       # find a repo by name
+        pp Access::find args.shift
+      when 'clone'      # clone a repo by name
+        p = Access::find args.shift
+        cmd = "git clone #{p['ssh_url']}"
+        system cmd
+      when 'open'       # Opens either the current pwd, or a supplied project, GitHub project page in a browser
+        opt = args.shift
+        opt = File.basename(Dir.getwd) if opt.nil?
+        p = Access::find opt
+        system "open #{p['html_url']}/#{branch_url}"
+      else
+        puts 'Unknown or no command given! Options are :-'
+        File.open(__FILE__).each_line do |line|
+          puts "  " + line.sub('when','').sub('#', '->').gsub('\'','') if line.include? 'when'
+          break if line.include? 'else'
+        end
       end
     end
   end
